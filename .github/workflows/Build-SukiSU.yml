@@ -5,27 +5,27 @@ on:
       CPU:
         description: "分支"
         required: true
-        default: 'sm8550'
+        default: 'sm7675'
       FEIL:
         description: "配置文件"
         required: true
-        default: 'oneplus_ace2pro_v'
+        default: 'oneplus_ace_3v_v'
       CPUD:
         description: "处理器代号"
         required: true
-        default: 'kalama'
+        default: 'pineapple'
       ANDROID_VERSION:
         description: "内核安卓版本"
         required: true
-        default: 'android13'
+        default: 'android14'
       KERNEL_VERSION:
         description: "内核版本"
         required: true
-        default: '5.15'
+        default: '6.1'
       KERNEL_NAME:
         description: "修改内核名称"
         required: true
-        default: '--android13-8-0-01123-996545487552b-Lzbs-ll'
+        default: '--android14-11-0-RuSheng'
       kernelsu_variant:
         description: "选择 KSU"
         required: true
@@ -225,13 +225,13 @@ jobs:
          sed -i "/stable_scmversion_cmd/s/-maybe-dirty//g" ./build/kernel/kleaf/impl/stamp.bzl
   
       - name: Build kernel
-        if: github.event.inputs.CPU == 'sm8650' 
+        if: github.event.inputs.CPU == 'sm7675' 
         run: |
          cd kernel_workspace
          ./kernel_platform/build_with_bazel.py -t ${{ github.event.inputs.CPUD }} gki
           
       - name: Fallback build kernel
-        if: github.event.inputs.CPU != 'sm8650' 
+        if: github.event.inputs.CPU != 'sm7675' 
         run: |
          cd kernel_workspace
          LTO=thin ./kernel_platform/oplus/build/oplus_build_kernel.sh ${{ github.event.inputs.CPUD }} gki

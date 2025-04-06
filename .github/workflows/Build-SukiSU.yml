@@ -5,11 +5,11 @@ on:
       CPU:
         description: "分支"
         required: true
-        default: 'sm8650'
+        default: 'sm7675'
       FEIL:
         description: "配置文件"
         required: true
-        default: 'oneplus_ace3_pro_v'
+        default: 'oneplus_ace_3v_v'
       CPUD:
         description: "处理器代号"
         required: true
@@ -25,7 +25,7 @@ on:
       KERNEL_NAME:
         description: "修改内核名称"
         required: true
-        default: '-android14-11-o-g1132d864665d'
+        default: '-android14-11-o-RuSheng'
       kernelsu_variant:
         description: "选择 KSU"
         required: true
@@ -228,7 +228,7 @@ jobs:
       - name: Build kernel
         run: |
           cd kernel_workspace
-          if [[ "${{ github.event.inputs.CPU }}" == "sm8650" || "${{ github.event.inputs.CPU }}" == "sm8750" ]]; then
+          if [[ "${{ github.event.inputs.CPU }}" == "sm7675" || "${{ github.event.inputs.CPU }}" == "sm7675" ]]; then
             ./kernel_platform/build_with_bazel.py -t ${{ github.event.inputs.CPUD }} gki --action_env=KSU_VERSION
           else
             LTO=thin ./kernel_platform/oplus/build/oplus_build_kernel.sh ${{ github.event.inputs.CPUD }} gki

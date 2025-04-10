@@ -197,7 +197,7 @@ jobs:
       - name: Add make name
         run: |
          cd kernel_workspace/kernel_platform
-           if [[ "${{ github.event.inputs.CPU }}" == "sm8650" || "${{ github.event.inputs.CPU }}" == "sm8750" ]]; then
+           if [[ "${{ github.event.inputs.CPU }}" == "sm7675" || "${{ github.event.inputs.CPU }}" == "sm7675" ]]; then
              sed -i "/stable_scmversion_cmd/s/-maybe-dirty//g" ./build/kernel/kleaf/impl/stamp.bzl
            fi
            sed -i '$s|echo "\$res"|echo "\${{ github.event.inputs.KERNEL_NAME }}"|' ./common/scripts/setlocalversion
